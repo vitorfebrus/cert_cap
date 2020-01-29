@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+  
+    "name": "Cert Cap",
+    "description": "Extensão para contabilizar as horas do Cert Ponto na Capgemini!",
+    "version": "1.0",
+  
+    "browser_action": {
+     "default_icon": "logo.png",
+     "default_popup": "popup.html"
+    },
+    "permissions": ["tabs", "<all_urls>"]
+  }

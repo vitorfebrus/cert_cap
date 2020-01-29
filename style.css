@@ -1,0 +1,114 @@
+body {
+  padding: 5%;
+  margin: 0px;
+  text-align: center;
+  background-image: linear-gradient(lightblue, rgb(255, 255, 210));
+  width: 300px;
+  border: 2px solid lightblue;
+}
+
+#btCalcular {
+  margin: 5% 5% 10% 5%;
+}
+
+#saldoAdp {
+  text-align: center;
+  font-family: 'Consolas';
+}
+
+.white {
+  background-color: white;
+  border-radius: 5%;
+}
+
+span {
+  color: red;
+  font-weight: bold;
+}
+
+#helpPanel {
+  display: none;
+  position: absolute;
+  background-color: rgb(255, 255, 210);
+  height: 180px;
+  text-align: left;
+  top: 35%;
+  padding: 5px;
+  border-radius: 5%;
+  color: rgb(0, 0, 0);
+  border: 2px solid rgb(83, 175, 206);
+}
+
+#helpPanel .center {
+  text-align: center;
+}
+
+.btnRound {
+  border-radius: 50%;
+}
+
+/* The sidepanel menu */
+.sidepanel {
+  height: 100%; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(rgb(255, 255, 210), lightblue);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 40px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+  text-align: left;
+}
+
+.sidepanel h4 {
+  text-align: center;
+}
+
+.sidepanel input{
+  margin: 0 5% 5% 5%;
+  width: 90%;
+  text-align: center;
+}
+
+.sidepanel label {
+  margin: 0 5% 0 5%;
+  
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+#alertPanel {
+  height: 100%;
+  text-align: center;
+  padding-top: 4%;
+}
+
+#alertPanel ol {
+  text-align: left;
+}
+
+#aviso {
+  display: none;
+  color: red;
+  margin: 0;
+}
+
+#alertReset {
+  margin: 5%;
+  text-align: center;
+  display: none;
+}

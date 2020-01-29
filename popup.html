@@ -1,0 +1,110 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <label for="saldoAdp">Saldo do ADP:</label>
+    <input
+      required="true"
+      placeholder="Saldo do ADP"
+      type="text"
+      name="Saldo do ADP: "
+      id="saldoAdp"
+      class="form-control"
+    />
+    <p id="aviso">Valor inválido!</p>
+    <input
+      type="button"
+      value="Calcular"
+      class="btn btn-info"
+      id="btCalcular"
+    />
+
+    <div class="white">
+      <label>Saldo de Horas</label>
+      <h3 id="saldoHoras"></h3>
+
+      <label>Horas Trabalhadas (Período Atual)</label>
+      <h3 id="totalHoras"></h3>
+      <h3 id="debug"></h3>
+    </div>
+
+    <div id="helpPanel">
+      <div class="center">
+        <img src="help.png" height="32" alt="" />
+      </div>
+
+      <ol>
+        <li>Acesse o CertPonto</li>
+        <li>Clique em Tratamento de Ponto</li>
+        <li>Abra o período mais atual</li>
+        <li>Insira seu saldo do ADP</li>
+        <li>Clique em Calcular</li>
+      </ol>
+    </div>
+
+    <div id="row">
+      <button
+        id="btnHelp"
+        class="fa fa-question btn btn-info btnRound"
+      ></button>
+      <button id="btnConfig" class="fa fa-cog btn btn-info btnRound" title="Configurações"></button>
+    </div>
+
+    <div id="mySidepanel" class="sidepanel">
+      <a id="btnClose" href="javascript:void(0)" class="closebtn"  title="Salvar e voltar">🡠</a>
+      <h4>Configurações</h4>
+
+      <div class="form-group">
+        <label>Horas Abonadas:</label>
+        <input type="time" class="form-control" id="horasAbonadas" />
+        <label>Jornada CertPonto (em horas):</label>
+        <input type="number" class="form-control" id="jornadaCertPonto" />
+        <label>Almoço (em horas):</label>
+        <input type="number" class="form-control" id="almoco" />
+        <label>Jornada SAP (em horas):</label>
+        <input disabled="true" type="number" class="form-control" id="jornadaSap" />
+        <label>Tolerância (em minutos):</label>
+        <input type="number" class="form-control" id="tolerancia" />
+        <label>Jornada Sem Almoço (em horas):</label>
+        <input type="number" class="form-control" id="semAlmoco" />
+      </div>
+      <div id="alertReset" class="alert alert-success" role="alert" style="background-color: lightgreen;">
+        Configurações Resetadas
+      </div>
+      <input id="resetBtn" type="button" class="btn btn-danger" value="Resetar Configurações" ></input>
+    </div>
+
+    <div id="alertPanel" class="sidepanel">
+      <div id="alertDiv">
+        <img src="alert.webp" height="32" alt="" />
+        <h2>Ooops!</h2>
+        <p>
+          Parece que você não está com o período mais atual aberto no site do CertPonto. Abra-o para
+          consultar seu saldo de horas.
+        </p>
+        <label for="instru"><strong>Instruções</strong></label>
+        <ol id="instru">
+          <li>Acesse o CertPonto</li>
+          <li>Clique em Tratamento de Ponto</li>
+          <li>Abra o período mais atual</li>
+        </ol>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
