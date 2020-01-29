@@ -1,4 +1,4 @@
-console.log('1');
+
 chrome.tabs.query({ active: true, lastFocusedWindow: true }, function(tabs) {
 	var url = tabs[0].url;
 	if (!url.includes('https://tratamento.certponto.com.br/#/employee/individualtreatment')) {
@@ -23,7 +23,7 @@ const keyLocalStorage = 'dadosCertCap';
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
 	if (request.action == 'getSource') {
-		console.log('3');
+
 		loadLocalStorage();
 		setValues();
 		dataHoras = request.source;
@@ -117,10 +117,12 @@ function sumHours(value) {
 	totalMinutos += value;
 }
 
+// verifica se uma string representa uma hora
 function isHour(value) {
 	return /^\d+\:\d{2}$/.test(value);
 }
 
+// converte uma string representando uma hora para seu valor em minutos
 function toMinutes(value) {
 	if (isHour(value)) {
 		var splits = value.split(':');
@@ -128,6 +130,7 @@ function toMinutes(value) {
 	}
 }
 
+// converte minutos para horas em formato imprimivel
 function toHours(value) {
 	var minutes = totalMinutos;
 	if (value != undefined) {
@@ -153,6 +156,7 @@ function toHours(value) {
 	}
 }
 
+// faz o calculo das horas
 function computeHours() {
 	if (saldoAdp == undefined) {
 		saldoAdp = 0;
@@ -173,6 +177,7 @@ function computeHours() {
 	}
 }
 
+// enviar o valor das variaveis para os componentes da tela
 function setValues() {
 	document.getElementById('jornadaCertPonto').value = jornadaCertPonto;
 	document.getElementById('almoco').value = almoco;
@@ -183,6 +188,7 @@ function setValues() {
 	document.getElementById('saldoAdp').value = saldoAdpBruto;
 }
 
+// tras os valores da tela para as variaveis do script
 function getValues() {
 	jornadaCertPonto = parseInt(document.getElementById('jornadaCertPonto').value);
 	almoco = parseInt(document.getElementById('almoco').value);
@@ -190,6 +196,23 @@ function getValues() {
 	semAlmoco = parseInt(document.getElementById('semAlmoco').value);
 	horasAbonadas = document.getElementById('horasAbonadas').value;
 
+	if(isNaN(jornadaCertPonto)) {
+		jornadaCertPonto = 9;
+	}
+	if(isNaN(almoco)) {
+		almoco = 1;
+	}
+	if(isNaN(tolerancia)) {
+		tolerancia = 10;
+	}
+	if(isNaN(semAlmoco)) {
+		semAlmoco = 4;
+	}
+	if(horasAbonadas === '') {
+		horasAbonadas = '00:00';
+	}
+
+	setValues();
 	// trata horas incluídas com segundos HH:mm:ss
 	if (horasAbonadas.length == 8) {
 		horasAbonadas = horasAbonadas.split(':')[0] + ':' + horasAbonadas.split(':')[1];
@@ -214,6 +237,7 @@ function saldoAdpToMinutes(saldoAdp) {
 	}
 }
 
+// acao de clicar no btn de resetar as configs
 document.getElementById('resetBtn').addEventListener('click', function() {
 	jornadaCertPonto = 9;
 	almoco = 1;
@@ -275,6 +299,7 @@ function isFeriado(date) {
 	return false;
 }
 
+// guarda os dados no localstorage
 function setLocalStorage() {
 	var dados = {
 		jornadaCertPonto: jornadaCertPonto,
@@ -285,15 +310,15 @@ function setLocalStorage() {
 		horasAbonadas: horasAbonadas,
 		saldoAdpBruto: saldoAdpBruto,
 	};
-	console.log(dados);
 
 	localStorage.setItem(keyLocalStorage, JSON.stringify(dados));
 }
 
+// recupera os dados do localstorage
 function loadLocalStorage() {
 	var dados = localStorage.getItem(keyLocalStorage);
 	dados = JSON.parse(dados);
-	console.log(dados);
+
 	if (dados == undefined) {
 		jornadaCertPonto = 9;
 		almoco = 1;
@@ -313,21 +338,20 @@ function loadLocalStorage() {
 	}
 }
 
+// injeta o script para recuperar o html da pagina aberta
 function onWindowLoad() {
 	chrome.tabs.executeScript(
 		null,
 		{
-			file: 'getPagesSource.js',
+			file: 'js/getPagesSource.js',
 		},
 		function() {
-			console.log('4');
 			
-			// If you try and inject into an extensions page or the webstore/NTP you'll get an error
 			if (chrome.runtime.lastError) {
 				console.log('Error!');
 			}
 		}
 	);
 }
-console.log('2');
+
 window.onload = onWindowLoad;

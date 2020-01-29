@@ -13,7 +13,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <label for="saldoAdp">Saldo do ADP:</label>
@@ -44,16 +44,14 @@
 
     <div id="helpPanel">
       <div class="center">
-        <img src="help.png" height="32" alt="" />
+        <img src="images/help.png" height="32" alt="" />
       </div>
+      <ul>
+        <li>O campo 'Saldo de Horas' mostra seu saldo no período atual</li>
+        <li>Para considerar os meses anteriores, insira seu saldo do ADP e clique em Calcular</li>
+        <li>Ajustes e Redefinições podem ser feitas nas Configurações</li>
 
-      <ol>
-        <li>Acesse o CertPonto</li>
-        <li>Clique em Tratamento de Ponto</li>
-        <li>Abra o período mais atual</li>
-        <li>Insira seu saldo do ADP</li>
-        <li>Clique em Calcular</li>
-      </ol>
+      </ul>
     </div>
 
     <div id="row">
@@ -86,11 +84,17 @@
         Configurações Resetadas
       </div>
       <input id="resetBtn" type="button" class="btn btn-danger" value="Resetar Configurações" ></input>
+    
+      <div id="about" >
+        <h6>Sobre</h6>
+        <p>Desenvolvido por Vitor Sampaio, funcionário da Capgemini Brasil S.A.</p>
+        <img src="images/logo.svg" alt="">
+      </div>
     </div>
 
     <div id="alertPanel" class="sidepanel">
       <div id="alertDiv">
-        <img src="alert.webp" height="32" alt="" />
+        <img src="images/alert.webp" height="32" alt="" />
         <h2>Ooops!</h2>
         <p>
           Parece que você não está com o período mais atual aberto no site do CertPonto. Abra-o para
@@ -100,11 +104,11 @@
         <ol id="instru">
           <li>Acesse o CertPonto</li>
           <li>Clique em Tratamento de Ponto</li>
-          <li>Abra o período mais atual</li>
+          <li>Clique no ícone <img src="images/clock.png" height="16"> do período mais recente</li>
         </ol>
       </div>
     </div>
 
-    <script src="popup.js"></script>
+    <script src="js/popup.js"></script>
   </body>
 </html>

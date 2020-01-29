@@ -2,7 +2,7 @@ body {
   padding: 5%;
   margin: 0px;
   text-align: center;
-  background-image: linear-gradient(lightblue, rgb(255, 255, 210));
+  background-image: linear-gradient(#add8e6, rgb(255, 255, 210));
   width: 300px;
   border: 2px solid lightblue;
 }
@@ -30,13 +30,14 @@ span {
   display: none;
   position: absolute;
   background-color: rgb(255, 255, 210);
-  height: 180px;
+  height: 210px;
   text-align: left;
-  top: 35%;
+  top: 25%;
   padding: 5px;
   border-radius: 5%;
   color: rgb(0, 0, 0);
   border: 2px solid rgb(83, 175, 206);
+  font-size: 15px;
 }
 
 #helpPanel .center {
@@ -111,4 +112,12 @@ span {
   margin: 5%;
   text-align: center;
   display: none;
+}
+
+#about {
+  background-color: rgb(194, 243, 243);
+  text-align: center;
+  margin: 5%;
+  border-radius: 5%;
+  border: 3px lightblue inset;
 }
