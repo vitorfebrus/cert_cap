@@ -1,10 +1,10 @@
 chrome.runtime.sendMessage({
-  action: "getSource",
+  action: 'getSource',
   source: parseDOM(document)
 });
 
 function parseDOM(document_root) {
-  var rows = document_root.getElementsByTagName("tr");
+  var rows = document_root.getElementsByTagName('tr');
   var dataHoras = [];
 
   for (i in rows) {

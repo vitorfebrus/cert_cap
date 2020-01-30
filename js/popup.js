@@ -1,11 +1,4 @@
 
-chrome.tabs.query({ active: true, lastFocusedWindow: true }, function(tabs) {
-	var url = tabs[0].url;
-	if (!url.includes('https://tratamento.certponto.com.br/#/employee/individualtreatment')) {
-		document.getElementById('alertPanel').style.width = '100%';
-	}
-});
-
 var dataHoras;
 var totalMinutos;
 var totalHorasMes;
@@ -27,6 +20,12 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 		loadLocalStorage();
 		setValues();
 		dataHoras = request.source;
+		chrome.tabs.query({ active: true, lastFocusedWindow: true }, function(tabs) {
+			var url = tabs[0].url;
+			if (dataHoras.length == 0) {
+				document.getElementById('alertPanel').style.width = '100%';
+			}
+		});
 		doJob();
 	}
 });
