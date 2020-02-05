@@ -105,7 +105,7 @@ function calcularTolerancia(dataHoras) {
 	var toleranciaAMenos = toMinutes(jornadaCertPonto + ':00') - tolerancia;
 	for (i in dataHoras) {
 		var minRealizadas = toMinutes(dataHoras[i].horas);
-		if (minRealizadas > toleranciaAMenos && minRealizadas < toleranciaAMais) {
+		if (minRealizadas >= toleranciaAMenos && minRealizadas <= toleranciaAMais) {
 			dataHoras[i].horas = jornadaCertPonto + ':00';
 		}
 	}
