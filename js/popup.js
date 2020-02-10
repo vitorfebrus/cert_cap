@@ -36,8 +36,9 @@ function doJob() {
 	saldoAdp = 0;
 	dataHoras = calcularTolerancia(dataHoras);
 	for (i in dataHoras) {
+		var date = new Date(dataHoras[i].data);
+
 		if (!isHour(dataHoras[i].horas) || dataHoras[i].horas == '00:00') {
-			var date = new Date(dataHoras[i].data);
 
 			// faltas
 			if (date.getDay() != 0 && date.getDay() != 6 && dataHoras[i].horas != '00:00' && !isFeriado(date)) {
@@ -46,13 +47,23 @@ function doJob() {
 
 			continue;
 		}
-		// considerar dias sem almoço
+		// considerar dias sem almoço e fds trabalhados
 		if (toMinutes(dataHoras[i].horas) <= toMinutes(semAlmoco + ':00')) {
-			totalHorasMes += jornadaCertPonto - almoco;
+			if(isFDS(date)) {
+				sumHours(toMinutes(dataHoras[i].horas));
+			} else {
+				totalHorasMes += jornadaCertPonto - almoco;
+				sumHours(toMinutes(dataHoras[i].horas));
+			}
 		} else {
-			totalHorasMes += jornadaCertPonto;
+			if(isFDS(date)) {
+				sumHours(toMinutes(dataHoras[i].horas) - toMinutes(almoco + ':00'));
+			} else {
+				totalHorasMes += jornadaCertPonto;
+				sumHours(toMinutes(dataHoras[i].horas));
+			}
+			
 		}
-		sumHours(toMinutes(dataHoras[i].horas));
 	}
 
 	document.getElementById('totalHoras').innerHTML = toHours(totalMinutos);
@@ -296,6 +307,10 @@ function isFeriado(date) {
 	}
 
 	return false;
+}
+
+function isFDS(date) {
+	return date.getDay() == 0 || date.getDay() == 6;
 }
 
 // guarda os dados no localstorage
